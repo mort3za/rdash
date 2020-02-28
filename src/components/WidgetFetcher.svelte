@@ -31,11 +31,8 @@
   }
 </script>
 
-<div class="card">
-  <div class="card-content">
-
-    <div class="content">
-      {#await promise}loading...{:then value}{value}{/await}
-    </div>
-  </div>
+<div class="widget--content">
+  {#await promise}loading...{:then value}{value}{/await}
 </div>
+
+

@@ -1,29 +1,38 @@
 <script>
+  import nanoid from "nanoid-esm";
   import { getWidgets, setWidgets } from "../helpers.js";
+  import { createEventDispatcher } from "svelte";
+  const dispatch = createEventDispatcher();
 
   let isModalOpen = false;
   // TODO refactor
-  const widgetId = "fetcher";
-  let content = {
-    responseType: "text"
+  const widgetType = "fetcher";
+  const defaultContent = {
+    responseType: "text",
+    title: "",
+    url: "",
+    config: ""
   };
+  let content = { ...defaultContent };
+
   function updateModal(value) {
     isModalOpen = value;
   }
   function reset() {
-    content = {};
+    content = { ...defaultContent };
   }
-
   function saveItem() {
     const items = getWidgets();
     const newItem = {
-      id: widgetId,
+      type: widgetType,
+      id: nanoid(8),
       content
     };
     let newItems = [newItem, ...items];
     setWidgets(newItems);
     reset();
     updateModal(false);
+    dispatch("add");
   }
 </script>
 
