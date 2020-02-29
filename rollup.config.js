@@ -16,7 +16,7 @@ const purgeCss = Purgecss({
   content: ["./src/**/*.svelte", "**/*.html"],
   css: ["**/*.css"],
 	defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
-	whitelist: ['active']
+	whitelist: ['active', 'is-active']
 });
 
 export default {
@@ -33,7 +33,7 @@ export default {
       plugins: [
         atImport,
         postcssNested,
-        // production && purgeCss,
+        production && purgeCss,
         autoprefixer,
         production &&
           cssnano({
