@@ -1,0 +1,14 @@
+html {
+  box-sizing: border-box
+}
+body {
+  background-color: #373740;
+  color: #f7f7f7;
+  min-height: 100vh;
+}
+.modal-card-body {
+  color: #373740;
+}
+.field .control {
+  margin-bottom: 0.75rem;
+}
