@@ -1,5 +1,6 @@
 <script>
   import { getDataByPath } from "../helpers.js";
+  import { isArray } from "lodash-es";
   export let content;
   let promise;
   const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
@@ -48,20 +49,38 @@
   .action {
     cursor: pointer;
   }
+  .widget--title {
+    font-size: 0.75rem;
+    color: #aaaaac;
+    font-weight: bold;
+  }
 </style>
 
 <div class="widget--content">
+  <div class="widget--title mb-xs is-flex align-center">
+    <span class="mr-sm">{content.title || 'Untitled'}</span>
+    <div on:click={init} class="action">
+      <ion-icon
+        class="has-text-info is-block"
+        size="small"
+        src="icons/reload-circle-sharp.svg" />
+    </div>
+  </div>
   {#await promise}
     loading...
   {:then value}
-    <div class="is-flex align-center">
-      <span class="mr-sm">{value}</span>
-      <div on:click={init} class="action">
-        <ion-icon
-          class="has-text-info"
-          size="small"
-          src="icons/reload-circle-sharp.svg" />
-      </div>
+    <div>
+      {#if isArray(value)}
+        <table class="table is-bordered">
+          <tr>
+            {#each value as colValue}
+              <td>{colValue}</td>
+            {/each}
+          </tr>
+        </table>
+      {:else}
+        <span>{value}</span>
+      {/if}
     </div>
   {/await}
 </div>

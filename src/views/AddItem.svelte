@@ -118,7 +118,7 @@
                 bind:value={content.jsonPath}
                 class="input"
                 type="text"
-                placeholder={'e.g. collections[0].products[2].price'} />
+                placeholder={'e.g. collections[0].products[2].price OR [0].jobUrl,[0].jobLocation'} />
             </div>
           </div>
         {/if}

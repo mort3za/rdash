@@ -25,11 +25,6 @@
     right: 2rem;
     top: 1.5rem;
   }
-  .widget--title {
-    font-size: 0.75rem;
-    color: #aaaaac;
-    font-weight: bold;
-  }
 </style>
 
 <div class="mx-sm">
@@ -49,7 +44,6 @@
   {#each widgets as widget (widget.id)}
     <div class="card">
       <div class="card-content p-md">
-        <span class="widget--title">{widget.content.title || 'Untitled'}</span>
         {#if widget.type === 'fetcher'}
           <WidgetFetcher content={widget.content} />
         {/if}

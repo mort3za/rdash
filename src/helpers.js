@@ -17,5 +17,6 @@ export function removeWidget(widgetId) {
 }
 
 export function getDataByPath(data, jsonPath) {
-  return get(data, jsonPath)
+  const paths = jsonPath.split(',')
+  return paths.map(path => get(data, path))
 }
