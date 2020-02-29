@@ -1,9 +1,10 @@
 <script>
-	import HomePage from "./views/HomePage.svelte";
-	import "bulma/css/bulma.min.css";
+  import HomePage from "./views/HomePage.svelte";
+  import "./styles/main.css";
 </script>
 
 <style>
+
 </style>
 
 <main>

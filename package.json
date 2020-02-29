@@ -7,12 +7,18 @@
     "start": "sirv public"
   },
   "devDependencies": {
-    "@minna-ui/rollup-plugin-purgecss": "^0.35.0",
+    "@fullhuman/postcss-purgecss": "^2.1.0",
     "@rollup/plugin-commonjs": "^11.0.2",
     "@rollup/plugin-node-resolve": "^7.1.1",
+    "autoprefixer": "^9.7.4",
+    "cssnano": "^4.1.10",
+    "postcss": "^7.0.27",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.1",
+    "purgecss-from-svelte": "^2.0.2",
     "rollup": "^1.32.0",
-    "rollup-plugin-css-only": "^2.0.0",
     "rollup-plugin-livereload": "^1.0.4",
+    "rollup-plugin-postcss": "^2.1.1",
     "rollup-plugin-svelte": "^5.1.1",
     "rollup-plugin-terser": "^5.2.0",
     "svelte": "^3.19.1"
