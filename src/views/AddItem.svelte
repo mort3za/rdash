@@ -37,7 +37,7 @@
 </script>
 
 <div class="control">
-  <button class="button is-link" on:click={() => updateModal(true)}>
+  <button class="button is-primary is-small" on:click={() => updateModal(true)}>
     Add Widget
   </button>
 </div>

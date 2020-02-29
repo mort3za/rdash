@@ -17,7 +17,6 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
-		purgecss(),
 		css({ output: "public/build/extra.css" }),
 		svelte({
 			// enable run-time checks when not in production
@@ -39,6 +38,9 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
+
+		// remove unused css
+		production && purgecss(),
 
 		// In dev mode, call `npm run start` once
 		// the bundle has been generated

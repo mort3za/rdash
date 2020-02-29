@@ -3,6 +3,7 @@
   import WidgetFetcher from "../components/WidgetFetcher.svelte";
   import { getWidgets, removeWidget } from "../helpers.js";
 
+  let isEditModeActive = false;
   let widgets = [];
   update();
 
@@ -32,8 +33,17 @@
 </style>
 
 <div>
-  <div class="toolbar">
+  <div class="toolbar is-flex justify-space-between">
     <AddItem on:add={update} />
+    {#if widgets.length > 0}
+      <button
+        class="button is-link is-small"
+        on:click={() => {
+          isEditModeActive = !isEditModeActive;
+        }}>
+        Edit Widgets
+      </button>
+    {/if}
   </div>
 
   {#each widgets as widget}
@@ -43,10 +53,12 @@
         {#if widget.type === 'fetcher'}
           <WidgetFetcher content={widget.content} />
         {/if}
-        <button
-          class="delete widget--delete"
-          aria-label="close"
-          on:click={() => remove(widget.id)} />
+        {#if isEditModeActive}
+          <button
+            class="delete widget--delete"
+            aria-label="close"
+            on:click={() => remove(widget.id)} />
+        {/if}
       </div>
     </div>
   {/each}
