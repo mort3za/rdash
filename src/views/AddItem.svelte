@@ -72,7 +72,7 @@
             type="text"
             placeholder="e.g. https://api.example.com/bombs" />
         </div>
-        <label class="label">Request Config</label>
+        <label class="label">Request Config <small>(Optional)</small></label>
         <div class="control">
           <input
             bind:value={content.config}
@@ -87,7 +87,6 @@
       <button class="button is-success" on:click={saveItem}>
         Save changes
       </button>
-      <button class="button" on:click={() => updateModal(false)}>Cancel</button>
     </footer>
   </div>
 

@@ -6,3 +6,6 @@ body {
   color: #f7f7f7;
   min-height: 100vh;
 }
+.control .input {
+  margin-bottom: 0.75rem;
+}
