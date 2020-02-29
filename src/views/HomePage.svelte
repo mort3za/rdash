@@ -32,12 +32,12 @@
   }
 </style>
 
-<div>
-  <div class="toolbar is-flex justify-space-between">
+<div class="mx-sm">
+  <div class="toolbar is-flex justify-space-between py-sm">
     <AddItem on:add={update} />
     {#if widgets.length > 0}
       <button
-        class="button is-link is-small"
+        class="button is-link is-small ml-xs"
         on:click={() => {
           isEditModeActive = !isEditModeActive;
         }}>
@@ -48,7 +48,7 @@
 
   {#each widgets as widget}
     <div class="card">
-      <div class="card-content">
+      <div class="card-content p-md">
         <span class="widget--title">{widget.content.title || 'Untitled'}</span>
         {#if widget.type === 'fetcher'}
           <WidgetFetcher content={widget.content} />

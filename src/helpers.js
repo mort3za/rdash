@@ -1,3 +1,5 @@
+import { get } from "lodash-es";
+
 export function getWidgets() {
   let widgets = localStorage.getItem("widgets");
   widgets = JSON.parse(widgets) || [];
@@ -12,4 +14,8 @@ export function removeWidget(widgetId) {
   const items = getWidgets();
   const newItems = items.filter(item => item.id !== widgetId);
   setWidgets(newItems);
+}
+
+export function getDataByPath(data, jsonPath) {
+  get(data, jsonPath)
 }

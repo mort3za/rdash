@@ -1,13 +1,21 @@
 <script>
+  import { getDataByPath } from "../helpers.js";
   export let content;
   let promise;
+  const corsProxyUrl = "https://cors-anywhere.herokuapp.com/";
   init();
 
   function init() {
     promise = run(content);
   }
 
-  async function run({ url, config, responseType }) {
+  async function run({
+    url,
+    config,
+    responseFormat,
+    useProxy = false,
+    jsonPath = ""
+  }) {
     const defaultConfig = {
       method: "GET"
     };
@@ -18,12 +26,13 @@
     } catch (error) {
       parsedConfig = defaultConfig;
     }
-
-    const res = await fetch(url, parsedConfig);
-    const text = await res[responseType]();
+    const newUrl = `${useProxy ? corsProxyUrl : ""}${url}`;
+    const res = await fetch(newUrl, parsedConfig);
+    let data = await res[responseFormat]();
+    data = responseFormat === "json" ? getDataByPath(data, jsonPath) : data;
 
     if (res.ok) {
-      return text;
+      return data;
     } else {
       return "failed to load";
     }
@@ -46,8 +55,11 @@
     loading...
   {:then value}
     <div class="is-flex align-center">
-      <span class="m-r-sm">{value}</span>
-      <ion-icon class="has-text-info" size="small" src="icons/reload-circle-sharp.svg" />
+      <span class="mr-sm">{value}</span>
+      <ion-icon
+        class="has-text-info"
+        size="small"
+        src="icons/reload-circle-sharp.svg" />
     </div>
   {/await}
 </div>

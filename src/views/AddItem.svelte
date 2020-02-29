@@ -8,7 +8,8 @@
   // TODO refactor
   const widgetType = "fetcher";
   const defaultContent = {
-    responseType: "text",
+    responseFormat: "text",
+    jsonPath: "",
     title: "",
     url: "",
     config: ""
@@ -72,7 +73,10 @@
             type="text"
             placeholder="e.g. https://api.example.com/bombs" />
         </div>
-        <label class="label">Request Config <small>(Optional)</small></label>
+        <label class="label">
+          Request Config
+          <small>(Optional)</small>
+        </label>
         <div class="control">
           <input
             bind:value={content.config}
@@ -80,6 +84,49 @@
             type="text"
             placeholder={'e.g. {"method": "POST", "data": {password: "p@ssw0rd"}}'} />
         </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Response Format</label>
+        <div class="control">
+          <label class="radio mr-sm">
+            <input
+              value={'text'}
+              bind:group={content.responseFormat}
+              type="radio"
+              name="responseFormat" />
+            Text
+          </label>
+          <label class="radio">
+            <input
+              value={'json'}
+              bind:group={content.responseFormat}
+              type="radio"
+              name="responseFormat" />
+            JSON
+          </label>
+        </div>
+
+        {#if content.responseFormat === 'json'}
+          <div class="control">
+            <label class="label">
+              JSON Path
+              <small>(Optional)</small>
+            </label>
+            <div class="control">
+              <input
+                bind:value={content.jsonPath}
+                class="input"
+                type="text"
+                placeholder={'e.g. collections[0].products[2].price'} />
+            </div>
+          </div>
+        {/if}
+
+        <label class="checkbox">
+          <input type="checkbox" bind:value={content.useProxy} />
+          Use CORS Proxy (Enable if your request does not work)
+        </label>
       </div>
 
     </section>

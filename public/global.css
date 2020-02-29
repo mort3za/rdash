@@ -6,6 +6,9 @@ body {
   color: #f7f7f7;
   min-height: 100vh;
 }
-.control .input {
+.modal-card-body {
+  color: #373740;
+}
+.field .control {
   margin-bottom: 0.75rem;
 }
