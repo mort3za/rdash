@@ -15,7 +15,8 @@ const production = !process.env.ROLLUP_WATCH;
 const purgeCss = Purgecss({
   content: ["./src/**/*.svelte", "**/*.html"],
   css: ["**/*.css"],
-  defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || []
+	defaultExtractor: content => content.match(/[A-Za-z0-9-_:/]+/g) || [],
+	whitelist: ['active']
 });
 
 export default {
@@ -30,9 +31,9 @@ export default {
     postcss({
       extract: "./public/build/main.css",
       plugins: [
-        production && atImport,
+        atImport,
         postcssNested,
-        production && purgeCss,
+        // production && purgeCss,
         autoprefixer,
         production &&
           cssnano({
