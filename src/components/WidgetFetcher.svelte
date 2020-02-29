@@ -45,21 +45,23 @@
 </script>
 
 <style>
-  .widget--content {
+  .action {
     cursor: pointer;
   }
 </style>
 
-<div class="widget--content" on:click={init}>
+<div class="widget--content">
   {#await promise}
     loading...
   {:then value}
     <div class="is-flex align-center">
       <span class="mr-sm">{value}</span>
-      <ion-icon
-        class="has-text-info"
-        size="small"
-        src="icons/reload-circle-sharp.svg" />
+      <div on:click={init} class="action">
+        <ion-icon
+          class="has-text-info"
+          size="small"
+          src="icons/reload-circle-sharp.svg" />
+      </div>
     </div>
   {/await}
 </div>

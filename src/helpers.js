@@ -17,5 +17,5 @@ export function removeWidget(widgetId) {
 }
 
 export function getDataByPath(data, jsonPath) {
-  get(data, jsonPath)
+  return get(data, jsonPath)
 }

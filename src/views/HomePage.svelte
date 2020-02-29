@@ -46,7 +46,7 @@
     {/if}
   </div>
 
-  {#each widgets as widget}
+  {#each widgets as widget (widget.id)}
     <div class="card">
       <div class="card-content p-md">
         <span class="widget--title">{widget.content.title || 'Untitled'}</span>
