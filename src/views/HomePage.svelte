@@ -1,6 +1,8 @@
 <script>
   import AddItem from "./AddItem.svelte";
+  import AddEquation from "./AddEquation.svelte";
   import WidgetFetcher from "../components/WidgetFetcher.svelte";
+  import WidgetEquation from "../components/WidgetEquation.svelte";
   import { getWidgets, removeWidget } from "../helpers.js";
 
   let isEditModeActive = false;
@@ -29,7 +31,12 @@
 
 <div class="mx-sm">
   <div class="toolbar is-flex justify-space-between py-sm">
-    <AddItem on:add={update} />
+    <div class="mr-xs">
+      <AddItem on:add={update} />
+    </div>
+    <div>
+      <AddEquation on:add={update} />
+    </div>
     {#if widgets.length > 0}
       <button
         class="button is-link is-small ml-xs"
@@ -46,6 +53,9 @@
       <div class="card-content p-md">
         {#if widget.type === 'fetcher'}
           <WidgetFetcher content={widget.content} />
+        {/if}
+        {#if widget.type === 'equation'}
+          <WidgetEquation content={widget.content} />
         {/if}
         {#if isEditModeActive}
           <button

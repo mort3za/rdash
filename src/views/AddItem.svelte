@@ -41,7 +41,7 @@
 
 <div class="control">
   <button class="button is-primary is-small" on:click={() => updateModal(true)}>
-    Add Widget
+    Add Fetcher Widget
   </button>
 </div>
 
