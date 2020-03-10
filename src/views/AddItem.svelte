@@ -12,7 +12,9 @@
     jsonPath: "",
     title: "",
     url: "",
-    config: ""
+    config: "",
+    useProxy: false,
+    noCache: false
   };
   let content = { ...defaultContent };
 
@@ -124,8 +126,13 @@
         {/if}
 
         <label class="checkbox">
-          <input type="checkbox" bind:value={content.useProxy} />
+          <input type="checkbox" bind:checked={content.useProxy} />
           Use CORS Proxy (Enable if your request does not work)
+        </label>
+
+        <label class="checkbox">
+          <input type="checkbox" bind:checked={content.noCache} />
+          Prevent Cache (Enable if result don't update)
         </label>
       </div>
 

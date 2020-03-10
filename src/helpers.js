@@ -17,6 +17,12 @@ export function removeWidget(widgetId) {
 }
 
 export function getDataByPath(data, jsonPath) {
-  const paths = jsonPath.split(',')
-  return paths.map(path => get(data, path))
+  const paths = jsonPath.split(",");
+  return paths.map(path => get(data, path));
+}
+
+export function addNoCacheParam(url) {
+  const newUrl = new URL(url)
+  newUrl.searchParams.set("nocache", Math.random())  
+  return newUrl.href;
 }

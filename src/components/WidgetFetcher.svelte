@@ -1,5 +1,5 @@
 <script>
-  import { getDataByPath } from "../helpers.js";
+  import { getDataByPath, addNoCacheParam } from "../helpers.js";
   import { isArray } from "lodash-es";
   export let content;
   let promise;
@@ -14,6 +14,7 @@
     url,
     config,
     responseFormat,
+    noCache = false,
     useProxy = false,
     jsonPath = ""
   }) {
@@ -27,7 +28,11 @@
     } catch (error) {
       parsedConfig = defaultConfig;
     }
-    const newUrl = `${useProxy ? corsProxyUrl : ""}${url}`;
+    let newUrl = `${useProxy ? corsProxyUrl : ""}${url}`;
+    if (noCache) {
+      newUrl = addNoCacheParam(newUrl);
+    }
+
     const res = await fetch(newUrl, parsedConfig);
     let data = await res[responseFormat]();
     data = responseFormat === "json" ? getDataByPath(data, jsonPath) : data;
@@ -70,7 +75,9 @@
     loading...
   {:then value}
     <div>
-      {#if isArray(value)}
+      {#if isArray(value) && value.length === 1}
+        <span>{value}</span>
+      {:else if isArray(value)}
         <table class="table is-bordered">
           <tr>
             {#each value as colValue}
