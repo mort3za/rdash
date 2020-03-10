@@ -3,9 +3,6 @@
   export let content;
   let sourceValues = {};
 
-  console.log('hi');
-  
-
   function getEquationResult(equation, sourceItems) {
     const parser = new Parser();
     if (!equation.formula) {

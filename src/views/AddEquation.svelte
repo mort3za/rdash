@@ -105,48 +105,68 @@
         </button>
       </div>
 
+      {#if sourceItems.length > 0}
+        <h3 class="mb-md has-text-info"><i><small>Source Variables</small></i></h3>
+      {/if}
+
       <!-- source items -->
       {#each sourceItems as item}
-        <div class="field">
-          <label class="label">
-            Variable Title
-            <sup>(use in equation as {item.name})</sup>
-          </label>
-          <div class="control">
-            <input
-              bind:value={item.title}
-              class="input"
-              type="text"
-              placeholder="e.g. My Weight" />
+        <div class="box">
+          <div class="field">
+            <label class="label">
+              Variable Title
+              <sup>(use in equation as {item.name})</sup>
+            </label>
+            <div class="control">
+              <input
+                bind:value={item.title}
+                class="input"
+                type="text"
+                placeholder="e.g. My Weight" />
+            </div>
           </div>
         </div>
       {/each}
 
+      {#if equations.length > 0 && sourceItems.length > 0}
+        <hr />
+      {/if}
+
+      {#if equations.length > 0}
+        <h3 class="mb-md has-text-info"><i><small>Formulas</small></i></h3>
+      {/if}
+
       {#each equations as item}
-        <div class="field">
-          <label class="label">Equation Title</label>
-          <div class="control">
-            <input
-              bind:value={item.title}
-              class="input"
-              type="text"
-              placeholder="e.g. My BMI" />
+        <div class="box">
+          <div class="field">
+
+            <!-- formula title -->
+            <label class="label">Equation Title</label>
+            <div class="control">
+              <input
+                bind:value={item.title}
+                class="input"
+                type="text"
+                placeholder="e.g. My BMI" />
+            </div>
+
+            <!-- formula -->
+            <label class="label">Math Formula</label>
+            <div class="control">
+              <input
+                bind:value={item.formula}
+                class="input"
+                type="text"
+                placeholder="e.g. x1 / x2 ^ 2" />
+            </div>
+            <p class="help">
+              <a
+                href="https://github.com/silentmatt/expr-eval/tree/master"
+                target="_blank">
+                How to write math functions?
+              </a>
+            </p>
           </div>
-        </div>
-        <div class="field">
-          <label class="label">Math Formula</label>
-          <div class="control">
-            <input
-              bind:value={item.formula}
-              class="input"
-              type="text"
-              placeholder="e.g. x1 / x2 ^ 2" />
-          </div>
-          <a
-            href="https://github.com/silentmatt/expr-eval/tree/master"
-            target="_blank">
-            How to write math functions?
-          </a>
         </div>
       {/each}
 
