@@ -3,6 +3,9 @@
   export let content;
   let sourceValues = {};
 
+  console.log('hi');
+  
+
   function getEquationResult(equation, sourceItems) {
     const parser = new Parser();
     if (!equation.formula) {
@@ -13,7 +16,7 @@
     try {
       result = expr.evaluate(sourceValues);
     } catch (error) {
-      result = "can't evaluate";
+      result = `can't evaluate (formula is ${equation.formula})`;
     }
 
     return result;
@@ -36,8 +39,9 @@
   <div>
     {#each content.sources as item}
       <input
+        class="input"
         type="text"
-        placeholder={item.title}
+        placeholder={`${item.title} (${item.name})`}
         bind:value={sourceValues[item.name]} />
     {/each}
     <hr />
