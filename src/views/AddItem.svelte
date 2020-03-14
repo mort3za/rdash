@@ -65,7 +65,7 @@
             bind:value={content.title}
             class="input"
             type="text"
-            placeholder="e.g. Shoot the atomic bomb" />
+            placeholder="e.g. Weather of London" />
         </div>
         <label class="label">Request URL</label>
         <div class="control">
@@ -73,7 +73,7 @@
             bind:value={content.url}
             class="input"
             type="text"
-            placeholder="e.g. https://api.example.com/bombs" />
+            placeholder="e.g. https://api.openweathermap.org/data/2.5/weather" />
         </div>
         <label class="label">
           Request Config
@@ -84,8 +84,15 @@
             bind:value={content.config}
             class="input"
             type="text"
-            placeholder={'e.g. {"method": "POST", "data": {password: "p@ssw0rd"}}'} />
+            placeholder={'e.g. {"method": "GET", "params": {q: "London,uk", appid: "your key"}}'} />
         </div>
+        <p class="help">
+          <a
+            href="https://github.com/axios/axios#request-config"
+            target="_blank">
+            Read the Axios docs
+          </a>
+        </p>
       </div>
 
       <div class="field">
@@ -120,7 +127,7 @@
                 bind:value={content.jsonPath}
                 class="input"
                 type="text"
-                placeholder={'e.g. collections[0].products[2].price OR [0].jobUrl,[0].jobLocation'} />
+                placeholder={'e.g. weather[0].description'} />
             </div>
           </div>
         {/if}

@@ -11,9 +11,9 @@
     const expr = parser.parse(equation.formula);
     let result = "";
     try {
-      result = expr.evaluate(sourceValues);
+      result = `<b>${expr.evaluate(sourceValues)}</b>`;
     } catch (error) {
-      result = `can't evaluate (formula is ${equation.formula})`;
+      result = `can't evaluate`;
     }
 
     return result;
@@ -45,7 +45,7 @@
     {#each content.equations as item}
       <div>
         {item.title}:
-        <b>{getEquationResult(item, content.sources)}</b>
+        {@html getEquationResult(item, content.sources)}
       </div>
     {/each}
   </div>

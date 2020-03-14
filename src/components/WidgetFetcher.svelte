@@ -40,7 +40,7 @@
     if (res.ok) {
       return data;
     } else {
-      return "failed to load";
+      return `<small class='error'><i>Failed to load</i></small>`;
     }
   }
 
@@ -86,7 +86,7 @@
           </tr>
         </table>
       {:else}
-        <span>{value}</span>
+        <span>{@html value}</span>
       {/if}
     </div>
   {/await}
